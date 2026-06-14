@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mantis - Product Support Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <h1>Mantis</h1>
+    <p>Marketplace + Knowledge Base + Diagnostic Assistant</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <h2>Create Company</h2>
+      <form id="companyForm" class="form">
+        <input name="name" placeholder="Company name" required />
+        <input name="description" placeholder="Short description" />
+        <button type="submit">Add Company</button>
+      </form>
+
+      <h2>Create Product</h2>
+      <form id="productForm" class="form">
+        <select name="companyId" id="companySelect" required></select>
+        <input name="name" placeholder="Product name" required />
+        <input name="category" placeholder="Category (e.g. scooter)" required />
+        <input name="description" placeholder="Description" />
+        <input name="imageUrl" placeholder="Image URL" />
+        <button type="submit">Add Product</button>
+      </form>
+
+      <h2>Search</h2>
+      <input id="searchInput" placeholder="Search products" />
+      <div id="products" class="list"></div>
+    </section>
+
+    <section class="panel" id="productPanel">
+      <h2>Product Details</h2>
+      <div id="productDetails">Select a product to continue.</div>
+
+      <div id="resourceWrap" class="hidden">
+        <h3>Add Resource</h3>
+        <form id="resourceForm" class="form" enctype="multipart/form-data">
+          <input name="title" placeholder="Resource title" required />
+          <select name="type" required>
+            <option value="pdf">PDF</option>
+            <option value="document">Document</option>
+            <option value="image">Image</option>
+            <option value="video">Video</option>
+            <option value="link">External Link</option>
+          </select>
+          <input name="externalUrl" placeholder="External URL (optional)" />
+          <input name="file" type="file" />
+          <button type="submit">Upload Resource</button>
+        </form>
+      </div>
+
+      <div id="assistantWrap" class="hidden">
+        <h3>Diagnostic Assistant</h3>
+        <form id="issueForm" class="form">
+          <input name="userName" placeholder="Your name" />
+          <textarea name="issueText" placeholder="Describe the issue" required></textarea>
+          <button type="submit">Start Diagnosis</button>
+        </form>
+
+        <div id="chat" class="chat"></div>
+        <form id="answerForm" class="form hidden">
+          <input name="answerText" placeholder="Type your answer" required />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

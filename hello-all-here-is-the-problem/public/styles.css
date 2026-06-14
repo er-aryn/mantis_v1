@@ -1,0 +1,158 @@
+:root {
+  --bg: #f4efe6;
+  --panel: #fffdf8;
+  --ink: #1d1d1d;
+  --muted: #666155;
+  --accent: #0d6b4f;
+  --accent-2: #c16012;
+  --line: #ded6c8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 10% 10%, #f8d9ab 0, transparent 20%),
+    radial-gradient(circle at 90% 30%, #d5ebdf 0, transparent 25%),
+    var(--bg);
+}
+
+.hero {
+  padding: 32px 24px 16px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 3rem;
+  letter-spacing: -0.04em;
+}
+
+.hero p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.layout {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 380px 1fr;
+  padding: 16px 24px 24px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+h2, h3 {
+  margin: 6px 0 10px;
+}
+
+.form {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+input, textarea, select, button {
+  font: inherit;
+}
+
+input, textarea, select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #fff;
+}
+
+textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-weight: 700;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0a553f;
+}
+
+.list {
+  display: grid;
+  gap: 8px;
+}
+
+.product-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  background: #fff;
+}
+
+.product-card h4 {
+  margin: 0 0 6px;
+}
+
+.product-card small {
+  color: var(--muted);
+}
+
+.product-card button {
+  margin-top: 8px;
+  background: var(--accent-2);
+}
+
+.resource-item {
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+.chat {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 10px;
+  min-height: 170px;
+  margin-bottom: 8px;
+}
+
+.msg {
+  margin: 8px 0;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.msg.user {
+  background: #e9f6f0;
+}
+
+.msg.bot {
+  background: #f8f3e9;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 940px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
