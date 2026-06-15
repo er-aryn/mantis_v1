@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "Product support marketplace with diagnostic assistant",
   "main": "server.js",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "build": "mkdir -p data/db && npm run seed"
   },
   "dependencies": {
     "express": "^4.19.2",
