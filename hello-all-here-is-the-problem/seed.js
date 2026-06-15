@@ -1,5 +1,14 @@
+const fs = require('fs');
+const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const { writeState } = require('./api/lib/store');
+
+// Ensure data directory exists before seeding
+const dataDir = path.join(process.cwd(), 'data', 'db');
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+  console.log('Created data/db directory');
+}
 
 const companyId = uuidv4();
 const product1 = uuidv4();

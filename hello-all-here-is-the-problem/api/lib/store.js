@@ -28,6 +28,7 @@ function readState() {
 }
 
 function writeState(state) {
+  ensureDbFile();
   fs.writeFileSync(DB_PATH, JSON.stringify(state, null, 2));
 }
 
