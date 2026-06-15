@@ -2,8 +2,9 @@ services:
   - type: web
     name: mantis-app
     runtime: node
+    region: oregon
     rootDir: hello-all-here-is-the-problem
-    buildCommand: npm install && npm run seed
+    buildCommand: npm install && mkdir -p data/db && npm run seed
     startCommand: npm start
     envVars:
       - key: NODE_ENV
