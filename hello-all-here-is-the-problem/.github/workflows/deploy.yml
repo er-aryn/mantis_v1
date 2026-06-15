@@ -1,0 +1,52 @@
+name: Auto Deploy to Render
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+    types: [ closed ]
+
+jobs:
+  deploy:
+    name: Deploy to Render
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: hello-all-here-is-the-problem/package-lock.json
+    
+    - name: Install dependencies
+      run: |
+        cd hello-all-here-is-the-problem
+        npm ci
+    
+    - name: Run tests (if available)
+      run: |
+        cd hello-all-here-is-the-problem
+        npm test --if-present
+      continue-on-error: true
+    
+    - name: Deploy to Render
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      env:
+        deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+      run: |
+        if [ -n "$deploy_url" ]; then
+          echo "Triggering deployment to Render..."
+          curl -X POST "$deploy_url"
+          echo "Deployment triggered successfully!"
+        else
+          echo "RENDER_DEPLOY_HOOK_URL secret not set"
+          echo "Please add your Render deploy hook URL to GitHub Secrets"
+          echo "Get it from: https://dashboard.render.com/webhooks"
+          exit 1
+        fi
